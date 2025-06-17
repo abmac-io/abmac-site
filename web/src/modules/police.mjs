@@ -19,12 +19,15 @@ const MULTIPLY = 'multiply';
 
 const gridSize = 11;
 const numContainers = gridSize * gridSize;
-const circD = 63;
+const circD = 64;
 const circOffsetX = 0.11111;
 const circOffsetY = 0.15873;
-const color1 = 0x01AFF6;
-const color2 = 0xF20085;
-const color3 = 0xFFD036;
+const color1 = 0xFE3A2D;
+const color2 = 0x23395B;
+const color3 = 0x1C7C54;
+//const color1 = 0x01AFF6;
+//const color2 = 0xF20085;
+//const color3 = 0xFFD036;
 const animDuration = 1.5;
 
 const stage = document.querySelector('.stage');
@@ -70,7 +73,7 @@ function createCircleTexture() {
   // Use higher resolution for better quality when scaled
   const scale = 2;
   g.circle(circD * scale / 2, circD * scale / 2, circD * scale / 2)
-    .fill({ color: 0xFFFFFF });
+    .fill({ color: 0xFFFDF8 });
 
   return app.renderer.generateTexture(g, {
     resolution: scale,
@@ -136,13 +139,13 @@ function animate() {
     position: "relative"
   });
 
-  mainTimeline = gsap.timeline({ delay: 0.2 })
+  mainTimeline = gsap.timeline({ delay: 0.4 })
     .from(containers, {
       pixi: { scale: 0, rotation: 360 },
       duration: 2,
       ease: 'power4',
       stagger: {
-        each: 0.1,
+        each: 0.2,
         grid: [gridSize, gridSize],
         from: [0, 1]
       }
@@ -153,7 +156,7 @@ function animate() {
       stagger: {
         each: 0.1,
         repeat: -1,
-        yoyo: true,
+        yoyo: false,
         grid: [gridSize, gridSize],
         from: [0, 1],
         onStart: function () {
@@ -164,7 +167,7 @@ function animate() {
 
           // Animate from 0 to 1 and back to 0
           gsap.to(children, {
-            pixi: { scale: 1 },
+            pixi: { scale: 1.5 },
             duration: animDuration,
             ease: 'sine.inOut',
             repeat: -1,
@@ -172,7 +175,7 @@ function animate() {
           });
         }
       }
-    }, 0.1)
+    }, 0.01)
     .from('.band .char', {
       duration: 2,
       y: 150,
