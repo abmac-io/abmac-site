@@ -9,7 +9,9 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "hono": "^4.7.11"
+    "gsap": "^3.13.0",
+    "hono": "^4.7.11",
+    "pixi.js": "^8.10.1"
   },
   "browserslist": [
     "defaults"

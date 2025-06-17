@@ -5,6 +5,7 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "skipLibCheck": true,
+    "sourceMap": true,
     "lib": [
       "ESNext"
     ],
@@ -13,9 +14,16 @@
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
+      ],
+      "@scripts/*": [
+        "public/scripts/*"
+      ],
+      "@templates/*": [
+        "public/templates/*"
       ]
     }
   },

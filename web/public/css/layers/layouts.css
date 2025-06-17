@@ -1,0 +1,456 @@
+@layer layout {
+
+  /* ==========================================================================
+     Flow Layouts - Variable Spacing
+     ========================================================================== */
+  .flow>*+* {
+    margin-block-start: var(--flow-space, 1em);
+  }
+
+  /* Flow with custom spacing for different content types */
+  .flow-tight {
+    --flow-space: 0.5em;
+  }
+
+  .flow-loose {
+    --flow-space: 2em;
+  }
+
+  /* ==========================================================================
+     Grid Layouts - Consistent Spacing
+     ========================================================================== */
+  .grid-flow {
+    display: grid;
+    gap: var(--grid-flow-gap, .5rem);
+    justify-items: start;
+  }
+
+  .grid-flow>* {
+    margin: 0;
+  }
+
+  /* Common grid patterns */
+  .grid-auto-fit {
+    --grid-min-width: 200px;
+    --grid-gap: 1rem;
+    display: grid;
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min-width), 100%), 1fr));
+  }
+
+  .grid-auto-fill {
+    --grid-min-width: 200px;
+    --grid-gap: 1rem;
+    display: grid;
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-width), 1fr));
+  }
+
+  /* ==========================================================================
+     Flex Layouts - Flexible Content
+     ========================================================================== */
+  .flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--flex-group-row-gap, 0.5rem) var(--flex-group-column-gap, 1rem);
+    align-items: var(--flex-group-alignment, center);
+    justify-content: var(--flex-group-justify, start);
+  }
+
+  /* Common flex patterns */
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .flex-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, 1rem);
+  }
+
+  /* ==========================================================================
+     Intrinsic Grid Layout System
+     ========================================================================== */
+  .layout-primary,
+  .layout-full-width {
+    --content-padding: clamp(1rem, 5vw, 2rem);
+
+    /* Track maximum widths */
+    --content-max-width: 1400px;
+    --popout-max-width: 1880px;
+    --narrow-max-width: 840px;
+
+    /* Track sizes */
+    --full: minmax(var(--content-padding), 1fr);
+    --popout: minmax(0, calc((var(--popout-max-width) - var(--content-max-width)) / 2));
+    --content: minmax(0, calc((var(--content-max-width) - var(--narrow-max-width)) / 2));
+    --narrow: min(var(--narrow-max-width), 100% - var(--content-padding) * 2);
+    display: grid;
+    grid-template-columns:
+      [full-start] var(--full) [popout-start] var(--popout) [content-start] var(--content) [narrow-start] var(--narrow) [narrow-end] var(--content) [content-end] var(--popout) [popout-end] var(--full) [full-end];
+  }
+
+  /* Default content placement */
+  .layout-primary>*,
+  .layout-full-width>* {
+    grid-column: content;
+  }
+
+  /* ==========================================================================
+     Grid Area Classes
+     ========================================================================== */
+  /* Full width classes */
+  .full-width {
+    grid-column: full;
+  }
+
+  .full-width-start {
+    grid-column: full-start / content-end;
+  }
+
+  .full-width-end {
+    grid-column: content-start / full-end;
+  }
+
+  /* Popout classes */
+  .popout {
+    grid-column: popout;
+  }
+
+  .popout-start {
+    grid-column: popout-start / content-end;
+  }
+
+  .popout-end {
+    grid-column: content-start / popout-end;
+  }
+
+  /* Content classes */
+  .content {
+    grid-column: content;
+  }
+
+  .content-start {
+    grid-column: content-start / narrow-end;
+  }
+
+  .content-end {
+    grid-column: narrow-start / content-end;
+  }
+
+  /* Narrow classes */
+  .narrow {
+    grid-column: narrow;
+  }
+
+  /* ==========================================================================
+     Common Layout Patterns
+     ========================================================================== */
+  /* Sidebar layouts */
+  .with-sidebar {
+    display: grid;
+    gap: var(--sidebar-gap, 1rem);
+    grid-template-columns: var(--sidebar-width, 250px) 1fr;
+  }
+
+  .with-sidebar[data-sidebar="end"] {
+    grid-template-columns: 1fr var(--sidebar-width, 250px);
+  }
+
+  /* Responsive sidebar */
+  @media (width < 768px) {
+    .with-sidebar {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Cluster layout for tags/chips */
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, 0.5rem);
+    align-items: var(--cluster-align, center);
+  }
+
+  /* Reel/Carousel base */
+  .reel {
+    display: grid;
+    gap: var(--reel-gap, 1rem);
+    grid-auto-flow: column;
+    grid-auto-columns: var(--reel-item-width, 300px);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--reel-padding, 1rem);
+  }
+
+  .reel>* {
+    scroll-snap-align: start;
+  }
+
+  /* Icon with text pattern */
+  .with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--icon-gap, 0.5em);
+  }
+
+  .with-icon--stack {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* ==========================================================================
+     Container Query Support
+     ========================================================================== */
+  .layout-container {
+    container-type: inline-size;
+  }
+
+  @supports (container-type: inline-size) {
+    @container (width < 768px) {
+      .flex-group-stack\@container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .grid-single\@container {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     Enhanced Grid Utilities
+     ========================================================================== */
+  /* Subgrid support for nested grids */
+  @supports (grid-template-columns: subgrid) {
+    .subgrid {
+      display: grid;
+      grid-template-columns: subgrid;
+    }
+
+    .subgrid-rows {
+      display: grid;
+      grid-template-rows: subgrid;
+    }
+  }
+
+  /* Grid span utilities */
+  .col-span-2 {
+    grid-column: span 2;
+  }
+
+  .col-span-3 {
+    grid-column: span 3;
+  }
+
+  .col-span-4 {
+    grid-column: span 4;
+  }
+
+  .col-span-full {
+    grid-column: 1 / -1;
+  }
+
+  .row-span-2 {
+    grid-row: span 2;
+  }
+
+  .row-span-3 {
+    grid-row: span 3;
+  }
+
+  .row-span-4 {
+    grid-row: span 4;
+  }
+
+  /* ==========================================================================
+     Specialized Layout Components
+     ========================================================================== */
+  /* Full-width content with manual padding control */
+  .full-content {
+    grid-column: full;
+    padding-inline: var(--content-padding);
+  }
+
+  .full-content-flush {
+    grid-column: full;
+    padding-inline: 0;
+  }
+
+  /* ==========================================================================
+     Responsive Layout Modifiers
+     ========================================================================== */
+  @media (width < 768px) {
+
+    .layout-primary,
+    .layout-full-width {
+      --content-padding: 1rem;
+    }
+
+    /* Stack flex groups on mobile */
+    .flex-group-stack\@mobile {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    /* Single column grids on mobile */
+    .grid-single\@mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (width >=1200px) {
+
+    .layout-primary,
+    .layout-full-width {
+      --content-padding: 2rem;
+    }
+  }
+
+  /* ==========================================================================
+     Utility Classes
+     ========================================================================== */
+  /* Gap overrides */
+  .gap-none {
+    gap: 0;
+  }
+
+  .gap-xs {
+    gap: 0.25rem;
+  }
+
+  .gap-sm {
+    gap: 0.5rem;
+  }
+
+  .gap-md {
+    gap: 1rem;
+  }
+
+  .gap-lg {
+    gap: 1.5rem;
+  }
+
+  .gap-xl {
+    gap: 2rem;
+  }
+
+  .gap-2xl {
+    gap: 3rem;
+  }
+
+  /* Logical gap properties */
+  .gap-block-none {
+    row-gap: 0;
+  }
+
+  .gap-block-sm {
+    row-gap: 0.5rem;
+  }
+
+  .gap-block-md {
+    row-gap: 1rem;
+  }
+
+  .gap-block-lg {
+    row-gap: 1.5rem;
+  }
+
+  .gap-inline-none {
+    column-gap: 0;
+  }
+
+  .gap-inline-sm {
+    column-gap: 0.5rem;
+  }
+
+  .gap-inline-md {
+    column-gap: 1rem;
+  }
+
+  .gap-inline-lg {
+    column-gap: 1.5rem;
+  }
+
+  /* Alignment utilities for grid items */
+  .justify-self-start {
+    justify-self: start;
+  }
+
+  .justify-self-center {
+    justify-self: center;
+  }
+
+  .justify-self-end {
+    justify-self: end;
+  }
+
+  .justify-self-stretch {
+    justify-self: stretch;
+  }
+
+  .align-self-start {
+    align-self: start;
+  }
+
+  .align-self-center {
+    align-self: center;
+  }
+
+  .align-self-end {
+    align-self: end;
+  }
+
+  .align-self-stretch {
+    align-self: stretch;
+  }
+
+  /* ==========================================================================
+     Aspect Ratio Utilities
+     ========================================================================== */
+  /* Aspect ratio containers */
+  .aspect-square {
+    aspect-ratio: 1;
+  }
+
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-21-9 {
+    aspect-ratio: 21 / 9;
+  }
+
+  /* Object fit utilities for images/videos in aspect containers */
+  .object-contain {
+    object-fit: contain;
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+
+  .object-fill {
+    object-fit: fill;
+  }
+
+  .object-scale-down {
+    object-fit: scale-down;
+  }
+}

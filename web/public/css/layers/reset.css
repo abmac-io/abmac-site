@@ -1,0 +1,451 @@
+@layer reset {
+
+  /* ==========================================================================
+     Universal & Base Elements
+     ========================================================================== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* More targeted overscroll approach */
+  body,
+  .scroller,
+  .modal {
+    overscroll-behavior: contain;
+  }
+
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-family:
+      system-ui,
+      'Segoe UI',
+      Roboto,
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji';
+    tab-size: 4;
+    line-height: 1.2;
+    /* Modern font features */
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    /* Prevent layout shift from scrollbars */
+    scrollbar-gutter: stable;
+  }
+
+  /* Progressive enhancement for experimental features */
+  @supports (interpolate-size: allow-keywords) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  @supports (hanging-punctuation: first) {
+    html {
+      hanging-punctuation: first last;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Color scheme support */
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* Dynamic viewport height */
+    line-height: 1.5;
+    /* Non-standard but widely supported */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ==========================================================================
+     Typography & Text Elements
+     ========================================================================== */
+  /* Reset margins for common text elements */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin-block-end: 0;
+  }
+
+  /* Heading-specific styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    /* Prevent widows in headings */
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Progressive enhancement for text-wrap */
+  @supports (text-wrap: balance) {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-wrap: balance;
+    }
+  }
+
+  /* Body text styling */
+  p,
+  li,
+  figcaption {
+    max-width: 75ch;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  /* Progressive enhancement for text-wrap: pretty */
+  @supports (text-wrap: pretty) {
+
+    p,
+    li,
+    figcaption {
+      text-wrap: pretty;
+    }
+  }
+
+  /* Font weight and size modifiers */
+  b,
+  strong {
+    font-weight: bolder;
+  }
+
+  small {
+    font-size: 80%;
+  }
+
+  /* Subscript and superscript */
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  /* Monospace elements */
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family:
+      ui-monospace,
+      SFMono-Regular,
+      Consolas,
+      'Liberation Mono',
+      Menlo,
+      monospace;
+    font-size: 1em;
+    /* Better code readability */
+    font-variant-ligatures: none;
+  }
+
+  /* ==========================================================================
+     Lists & Navigation
+     ========================================================================== */
+  :is(ul, ol)[class] {
+    list-style: '';
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Consistent list spacing */
+  :is(ul, ol):not([class]) {
+    padding-inline-start: 1em;
+  }
+
+  /* ==========================================================================
+     Tables & Data
+     ========================================================================== */
+  table {
+    border-color: currentcolor;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    text-align: start;
+  }
+
+  td,
+  math,
+  time[datetime*=":"] {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  /* ==========================================================================
+     Forms & Interactive Elements
+     ========================================================================== */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  button,
+  label,
+  input {
+    line-height: 1.1;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Better button resets */
+  button {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  /* Enhanced focus styles */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :focus-visible {
+      outline-width: 3px;
+    }
+  }
+
+  /* Remove default focus for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  textarea:not([rows]) {
+    min-height: 10em;
+    resize: vertical;
+  }
+
+  /* Better form field styling with fallback */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+    block-size: 44px;
+    /* Fallback */
+    block-size: max(44px, 1lh + 1rem);
+  }
+
+  /* Prevent iOS zoom on form focus */
+  @media (hover: none) {
+
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Details/Summary reset */
+  summary {
+    display: list-item;
+    cursor: pointer;
+  }
+
+  /* Fieldset reset */
+  fieldset {
+    padding: 0.35em 0.75em 0.625em;
+    border: 2px solid currentColor;
+  }
+
+  legend {
+    padding: 0;
+  }
+
+  /* Progress and meter */
+  progress,
+  meter {
+    vertical-align: baseline;
+  }
+
+  /* ==========================================================================
+     Media Elements
+     ========================================================================== */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Improve image performance */
+  img {
+    height: auto;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 0.75rem;
+  }
+
+  /* ==========================================================================
+     Links & Navigation
+     ========================================================================== */
+  a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+  }
+
+  /* Better link accessibility */
+  a {
+    text-underline-offset: 0.125em;
+  }
+
+  /* ==========================================================================
+     Layout & Container Elements
+     ========================================================================== */
+  /* Better flex/grid defaults */
+  [style*="display: flex"],
+  [style*="display: grid"] {
+    gap: 1rem;
+  }
+
+  /* ==========================================================================
+     Scroll & Accessibility
+     ========================================================================== */
+  :target {
+    scroll-margin-block: 1rem;
+    scroll-margin-block: 1rlh;
+    /* Progressive enhancement */
+  }
+
+  .scroller {
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+  }
+
+  /* Skip links */
+  .skip-link:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ==========================================================================
+     Motion & Animation
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ==========================================================================
+     Print Styles
+     ========================================================================== */
+  @media print {
+
+    *,
+    *::before,
+    *::after {
+      background: transparent !important;
+      color: black !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    p {
+      orphans: 3;
+      widows: 3;
+    }
+  }
+
+  /* ==========================================================================
+     Security & Performance
+     ========================================================================== */
+  /* Better iframe security */
+  iframe {
+    border: 0;
+  }
+}
+
+@layer isolate {
+
+  /* Prevent margin collapse on root */
+  #root,
+  #__next,
+  .app {
+    isolation: isolate;
+    display: flow-root;
+  }
+}

@@ -1,344 +1,317 @@
-/* the props */
-@import "open-props/postcss/style";
+@layer reset, layout, base, components, patterns, pages, themes, utilities;
 
-/* optional imports that use the props */
-@import "open-props/postcss/normalize";
-@import "open-props/postcss/buttons";
+@import "./layers/reset.css" layer(reset);
+@import "./layers/layouts.css" layer(layout);
 
-/* individual imports */
-@import "open-props/postcss/indigo";
-@import "open-props/postcss/easings";
-@import "open-props/postcss/animations";
-@import "open-props/postcss/sizes";
-@import "open-props/postcss/gradients";
-
-@import "https://unpkg.com/open-props";
-@import "https://unpkg.com/open-props/gray-hsl.min.css";
-@import "https://unpkg.com/open-props/purple-hsl.min.css";
-@import "https://unpkg.com/open-props/choco-hsl.min.css";
-
-@use postcss-preset-env {
-  stage: 0;
-
-  features: {
-    "logical-properties-and-values": false
-  }
-}
-
-html {
-  /* light */
-  --brand-light: var(--orange-6);
-  --text-1-light: var(--gray-8);
-  --text-2-light: var(--gray-7);
-  --surface-1-light: var(--gray-0);
-  --surface-2-light: var(--gray-1);
-  --surface-3-light: var(--gray-2);
-  --surface-4-light: var(--gray-3);
-  --surface-shadow-light: var(--gray-8-hsl);
-  --shadow-strength-light: 2%;
-
-  /* dark */
-  --brand-dark: var(--orange-3);
-  --text-1-dark: var(--gray-3);
-  --text-2-dark: var(--gray-5);
-  --surface-1-dark: var(--gray-12);
-  --surface-2-dark: var(--gray-11);
-  --surface-3-dark: var(--gray-10);
-  --surface-4-dark: var(--gray-9);
-  --surface-shadow-dark: var(--gray-12-hsl);
-  --shadow-strength-dark: 80%;
-
-  /* dim */
-  --brand-dim: var(--orange-4);
-  --text-1-dim: var(--gray-3);
-  --text-2-dim: var(--gray-4);
-  --surface-1-dim: var(--gray-8);
-  --surface-2-dim: var(--gray-7);
-  --surface-3-dim: var(--gray-6);
-  --surface-4-dim: var(--gray-5);
-  --surface-shadow-dim: var(--gray-9-hsl);
-  --shadow-strength-dim: 20%;
-
-  /* grape */
-  --brand-grape: var(--purple-5);
-  --text-1-grape: var(--purple-9);
-  --text-2-grape: var(--purple-7);
-  --surface-1-grape: var(--purple-0);
-  --surface-2-grape: var(--purple-1);
-  --surface-3-grape: var(--purple-2);
-  --surface-4-grape: var(--purple-3);
-  --surface-shadow-grape: var(--purple-12-hsl);
-  --shadow-strength-grape: 2%;
-
-  /* choco */
-  --brand-choco: var(--choco-5);
-  --text-1-choco: var(--choco-1);
-  --text-2-choco: var(--choco-2);
-  --surface-1-choco: var(--choco-12);
-  --surface-2-choco: var(--choco-11);
-  --surface-3-choco: var(--choco-10);
-  --surface-4-choco: var(--choco-9);
-  --surface-shadow-choco: 25deg 65% 11%;
-  --shadow-strength-choco: 50%;
-}
-
-:root {
-  color-scheme: light;
-
-  /* set defaults */
-  --brand: var(--brand-light);
-  --text-1: var(--text-1-light);
-  --text-2: var(--text-2-light);
-  --surface-1: var(--surface-1-light);
-  --surface-2: var(--surface-2-light);
-  --surface-3: var(--surface-3-light);
-  --surface-4: var(--surface-4-light);
-  --surface-shadow: var(--surface-shadow-light);
-  --shadow-strength: var(--shadow-strength-light);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    color-scheme: dark;
+    --brand-red: hsl(3.73, 99.05%, 58.63%);
+    --brand-yellow-light: hsl(37.98, 92.16%, 60%);
+    --brand-yellow-dark: hsl(37.24, 91.34%, 49.8%);
+    --brand-green-light: hsl(155, 63.16%, 29.8%);
+    --brand-green-dark: hsl(154.62, 55.56%, 45.88%);
+    --brand-blue-light: hsl(216.43, 44.44%, 24.71%);
+    --brand-blue-dark: hsl(182.09, 71.43%, 31.57%);
 
-    --brand: var(--brand-dark);
-    --text-1: var(--text-1-dark);
-    --text-2: var(--text-2-dark);
-    --surface-1: var(--surface-1-dark);
-    --surface-2: var(--surface-2-dark);
-    --surface-3: var(--surface-3-dark);
-    --surface-4: var(--surface-4-dark);
-    --surface-shadow: var(--surface-shadow-dark);
-    --shadow-strength: var(--shadow-strength-dark);
+    --brand-neutral-0: hsl(42.86, 100%, 98.63%);
+    --brand-neutral-1: hsl(36.92, 10.08%, 74.71%);
+    --brand-neutral-2: hsl(30, 4.1%, 52.16%);
+    --brand-neutral-3: hsl(290, 5.08%, 23.14%);
+    --brand-neutral-4: hsl(267.27, 12.94%, 16.67%);
+    --brand-neutral-5: hsl(290, 9.38%, 12.55%);
+
+    /* Typography */
+    --font-size-base: 1rem;
+    --line-height-base: 1.5;
+  }
+
+  body {
+    --bg-color: var(--brand-neutral-0);
+    --font-color: var(--brand-neutral-5);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--font-color);
+    background-color: var(--bg-color, black);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block-start: 0;
+    margin-block-end: 0.5em;
+    font-weight: 800;
+    font-family: "Jost", sans-serif;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+
+  /* Make layout areas visible */
+  .layout-primary>* {
+    padding-block: 2rem;
+  }
+
+  /* Visual separation for sections */
+  section {
+    /* border-radius: 0.5rem; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    */
+    padding: 2rem;
+  }
+
+  /* Header styling */
+  header {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  header h1 {
+    color: var(--color-neutral-900);
+    margin-bottom: 0.25em;
+  }
+
+  header p {
+    color: var(--color-neutral-600);
+    font-size: 1.125rem;
+  }
+
+  /* List styling for demos */
+  ul:not([class]) {
+    margin-block-start: 0;
+  }
+
+  ul:not([class]) li {
+    margin-block-end: 0.25em;
   }
 }
 
-[color-scheme="light"] {
-  color-scheme: light;
+@layer components {
 
-  --brand: var(--brand-light);
-  --text-1: var(--text-1-light);
-  --text-2: var(--text-2-light);
-  --surface-1: var(--surface-1-light);
-  --surface-2: var(--surface-2-light);
-  --surface-3: var(--surface-3-light);
-  --surface-4: var(--surface-4-light);
-  --surface-shadow: var(--surface-shadow-light);
-  --shadow-strength: var(--shadow-strength-light);
-}
-
-[color-scheme="dark"] {
-  color-scheme: dark;
-
-  --brand: var(--brand-dark);
-  --text-1: var(--text-1-dark);
-  --text-2: var(--text-2-dark);
-  --surface-1: var(--surface-1-dark);
-  --surface-2: var(--surface-2-dark);
-  --surface-3: var(--surface-3-dark);
-  --surface-4: var(--surface-4-dark);
-  --surface-shadow: var(--surface-shadow-dark);
-  --shadow-strength: var(--shadow-strength-dark);
-}
-
-[color-scheme="dim"] {
-  color-scheme: dark;
-
-  --brand: var(--brand-dim);
-  --text-1: var(--text-1-dim);
-  --text-2: var(--text-2-dim);
-  --surface-1: var(--surface-1-dim);
-  --surface-2: var(--surface-2-dim);
-  --surface-3: var(--surface-3-dim);
-  --surface-4: var(--surface-4-dim);
-  --surface-shadow: var(--surface-shadow-dim);
-  --shadow-strength: var(--shadow-strength-dim);
-}
-
-[color-scheme="grape"] {
-  color-scheme: light;
-
-  --brand: var(--brand-grape);
-  --text-1: var(--text-1-grape);
-  --text-2: var(--text-2-grape);
-  --surface-1: var(--surface-1-grape);
-  --surface-2: var(--surface-2-grape);
-  --surface-3: var(--surface-3-grape);
-  --surface-4: var(--surface-4-grape);
-  --surface-shadow: var(--surface-shadow-grape);
-  --shadow-strength: var(--shadow-strength-grape);
-}
-
-[color-scheme="choco"] {
-  color-scheme: light;
-
-  --brand: var(--brand-choco);
-  --text-1: var(--text-1-choco);
-  --text-2: var(--text-2-choco);
-  --surface-1: var(--surface-1-choco);
-  --surface-2: var(--surface-2-choco);
-  --surface-3: var(--surface-3-choco);
-  --surface-4: var(--surface-4-choco);
-  --surface-shadow: var(--surface-shadow-choco);
-  --shadow-strength: var(--shadow-strength-choco);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-html {
-  block-size: 100%;
-  background-color: var(--surface-1);
-  color: var(--text-1);
-  accent-color: var(--brand);
-}
-
-body {
-  min-block-size: 100%;
-  font-family: system-ui, sans-serif;
-  padding: var(--size-6);
-  display: grid;
-  place-content: center;
-  gap: var(--size-6);
-}
-
-main {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  gap: var(--size-10);
-}
-
-section {
-  display: grid;
-  gap: var(--size-6);
-}
-
-h1 {
-  font-weight: var(--font-weight-1);
-}
-
-p {
-  max-inline-size: var(--size-content-1);
-  font-size: var(--font-size-4);
-  line-height: var(--font-lineheight-3);
-}
-
-header {
-  display: inline-grid;
-  gap: var(--size-3);
-}
-
-form {
-  display: flex;
-  gap: var(--size-5);
-
-  &>div {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--size-2);
-  }
-}
-
-.surface-samples {
-  display: grid;
-  --size: var(--size-content-1);
-  grid-template-columns: var(--size) var(--size);
-  grid-auto-rows: var(--size);
-  gap: var(--size-5);
-
-  @media (width <=480px) {
-    & {
-      --size: 40vw;
-    }
+  /* Demo grid cards */
+  .grid-auto-fit>div {
+    background-color: var(--color-neutral-100);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-neutral-300);
   }
 
-  &>* {
-    border-radius: var(--radius-3);
+  .with-sidebar {
     display: grid;
-    place-content: center;
-    font-size: var(--font-size-8);
-    font-weight: var(--font-weight-2);
+    gap: var(--sidebar-gap, 1rem);
+    grid-template-columns: var(--sidebar-width, 250px) 1fr;
   }
-}
 
-.text-samples {
-  display: grid;
-  gap: var(--size-4);
+  /* Sidebar demo styling
+  .with-sidebar {
+    min-height: 200px;
+    background: var(--color-neutral-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  } */
 
-  &>h1 {
-    font-size: var(--font-size-6);
-    display: inline-flex;
+  .with-sidebar>* {
+    padding: 1rem;
+  }
+
+  .with-sidebar>aside {
+    background: var(--color-neutral-200);
+    border-radius: 0.5rem;
+  }
+
+  .with-sidebar>main {
+    background: var(--color-neutral-50, #fafafa);
+    border-radius: 0.5rem;
+  }
+
+  /* Cluster demo (tags) */
+  .cluster>span {
+    padding: 0.5rem 1rem;
+    background: var(--color-neutral-200);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .cluster>span:hover {
+    background: var(--color-neutral-300);
+  }
+
+  /* Example content boxes */
+  .example-box {
+    background: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-300);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
     align-items: center;
-    gap: var(--size-3);
+    justify-content: center;
   }
 }
 
-.brand {
-  color: var(--brand);
-  background-color: var(--brand);
-}
+@layer patterns {
 
-.surface-1 {
-  background-color: var(--surface-1);
-  color: var(--text-2);
-}
+  /* Feature grid pattern */
+  .feature-grid {
+    --grid-min-width: 250px;
+    --grid-gap: 2rem;
+  }
 
-.surface-2 {
-  background-color: var(--surface-2);
-  color: var(--text-2);
-}
+  .feature-grid h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-neutral-800);
+  }
 
-.surface-3 {
-  background-color: var(--surface-3);
-  color: var(--text-1);
-}
-
-.surface-4 {
-  background-color: var(--surface-4);
-  color: var(--text-1);
-}
-
-.text-1 {
-  color: var(--text-1);
-
-  @nest p& {
-    font-weight: var(--font-weight-2);
+  .feature-grid ul {
+    color: var(--color-neutral-600);
   }
 }
 
-.text-2 {
-  color: var(--text-2);
-}
+@layer utilities {
 
-.swatch {
-  display: inline-block;
-  flex-shrink: 0;
-  inline-size: var(--size-8);
-  block-size: var(--size-8);
-  border-radius: var(--radius-round);
-
-  &.text-1 {
-    background-color: var(--text-1);
+  /* Full viewport centering utility */
+  .center-screen {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
-  &.text-2 {
-    background-color: var(--text-2);
+  /* Centered with max-width constraint */
+  .center-content {
+    display: grid;
+    place-items: center;
+    min-height: inherit;
   }
-}
 
-.rad-shadow {
-  border: 1px solid hsl(var(--brand-hue) 10% 50% / 15%);
-  box-shadow: 0 1rem .5rem -.5rem;
-  box-shadow:
-    0 2.8px 2.2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 6.7px 5.3px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 1%)),
-    0 12.5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 22.3px 17.9px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 41.8px 33.4px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 100px 80px hsl(var(--surface-shadow) / var(--shadow-strength));
+  .center-content>* {
+    max-width: 65ch;
+    width: 100%;
+    padding-inline: var(--content-padding, 1rem);
+  }
+
+  /* Spacing utilities */
+  .mt-0 {
+    margin-top: 0;
+  }
+
+  .mb-1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .mb-2 {
+    margin-bottom: 1rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 2rem;
+  }
+
+  /* Text utilities */
+  .text-muted {
+    color: var(--color-neutral-600);
+  }
+
+  .text-small {
+    font-size: 0.875rem;
+  }
+
+  /* Background utilities */
+  .bg-light {
+    background-color: var(--color-neutral-100);
+  }
+
+  .bg-white {
+    background-color: white;
+  }
+
+  /* Border radius utilities */
+  .rounded {
+    border-radius: 0.5rem;
+  }
+
+  .rounded-sm {
+    border-radius: 0.25rem;
+  }
+
+  /* Shadow utilities */
+  .shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Temporary: visualize layout areas (remove when not needed) */
+  .debug-layout .content {
+    background-color: rgba(0, 255, 0, 0.05);
+    outline: 2px dashed rgba(0, 255, 0, 0.3);
+  }
+
+  .debug-layout .narrow {
+    background-color: rgba(0, 0, 255, 0.05);
+    outline: 2px dashed rgba(0, 0, 255, 0.3);
+  }
+
+  .debug-layout .popout {
+    background-color: rgba(255, 0, 0, 0.05);
+    outline: 2px dashed rgba(255, 0, 0, 0.3);
+  }
+
+  .debug-layout .full-width {
+    background-color: rgba(255, 255, 0, 0.05);
+    outline: 2px dashed rgba(255, 255, 0, 0.3);
+  }
+
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .hero-text {
+    font-family: "Jost", sans-serif;
+    font-size: clamp(2rem, 10vw, 144px);
+    line-height: 1;
+    white-space: nowrap;
+    width: max-content;
+    margin-inline: auto;
+    padding-inline: 0 !important;
+    text-align: center;
+  }
+
+  .subhero-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.5rem, 5vw, 74px);
+    line-height: 1;
+    white-space: nowrap;
+    width: max-content;
+    margin-inline: auto;
+    padding-inline: 0 !important;
+    text-align: center;
+  }
 }
