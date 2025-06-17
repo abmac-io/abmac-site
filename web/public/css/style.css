@@ -295,8 +295,10 @@
 
   .hero-text {
     font-family: "Jost", sans-serif;
+    font-weight: 800;
     font-size: clamp(2rem, 10vw, 144px);
-    line-height: 1;
+    padding-top: 15%;
+    line-height: 0.5;
     white-space: nowrap;
     width: max-content;
     margin-inline: auto;
@@ -306,6 +308,7 @@
 
   .subhero-text {
     font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
     font-size: clamp(1.5rem, 5vw, 74px);
     line-height: 1;
     white-space: nowrap;
