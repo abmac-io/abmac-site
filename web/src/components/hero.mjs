@@ -1,7 +1,8 @@
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 
 document.fonts.ready.then(() => {
   let split = SplitText.create(".hero-text", {
@@ -13,7 +14,14 @@ document.fonts.ready.then(() => {
         y: 100,
         autoAlpha: 0,
         stagger: {
-          amount: 0.5
+          amount: 0.25
+        },
+        scrambleText: {
+          text: 'x',
+          chars: "upperAndLowercase",
+          speed: 0.5,
+          delimite: " ",
+          tweenLength: true
         },
         onComplete: () => {
           split.revert()
