@@ -7,4 +7,6 @@ app.get("/", (c) => {
   return c.html(index as string);
 });
 
-export default app;
+app.get
+
+export default app; 
