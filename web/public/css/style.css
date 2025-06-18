@@ -47,7 +47,7 @@
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   h2 {
@@ -59,7 +59,7 @@
   }
 
   /* Make layout areas visible */
-  .layout-primary>* {
+  .layout-primary > * {
     padding-block: 2rem;
   }
 
@@ -99,9 +99,8 @@
 }
 
 @layer components {
-
   /* Demo grid cards */
-  .grid-auto-fit>div {
+  .grid-auto-fit > div {
     background-color: var(--color-neutral-100);
     border-radius: 0.5rem;
     padding: 1.5rem;
@@ -122,22 +121,22 @@
     overflow: hidden;
   } */
 
-  .with-sidebar>* {
+  .with-sidebar > * {
     padding: 1rem;
   }
 
-  .with-sidebar>aside {
+  .with-sidebar > aside {
     background: var(--color-neutral-200);
     border-radius: 0.5rem;
   }
 
-  .with-sidebar>main {
+  .with-sidebar > main {
     background: var(--color-neutral-50, #fafafa);
     border-radius: 0.5rem;
   }
 
   /* Cluster demo (tags) */
-  .cluster>span {
+  .cluster > span {
     padding: 0.5rem 1rem;
     background: var(--color-neutral-200);
     border-radius: 0.25rem;
@@ -145,7 +144,7 @@
     transition: background-color 0.2s ease;
   }
 
-  .cluster>span:hover {
+  .cluster > span:hover {
     background: var(--color-neutral-300);
   }
 
@@ -164,7 +163,6 @@
 }
 
 @layer patterns {
-
   /* Feature grid pattern */
   .feature-grid {
     --grid-min-width: 250px;
@@ -183,7 +181,6 @@
 }
 
 @layer utilities {
-
   /* Full viewport centering utility */
   .center-screen {
     display: grid;
@@ -199,7 +196,7 @@
     min-height: inherit;
   }
 
-  .center-content>* {
+  .center-content > * {
     max-width: 65ch;
     width: 100%;
     padding-inline: var(--content-padding, 1rem);
@@ -296,7 +293,7 @@
   .hero-text {
     font-family: "Jost", sans-serif;
     font-weight: 800;
-    font-size: clamp(2rem, 10vw, 144px);
+    font-size: clamp(1.5rem, 0rem + 7.5vw, 9rem);
     padding-top: 15%;
     line-height: 0.5;
     white-space: nowrap;
@@ -309,7 +306,7 @@
   .subhero-text {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 200;
-    font-size: clamp(1.5rem, 5vw, 74px);
+    font-size: clamp(1.125rem, 0.75rem + 1.875vw, 3rem);
     line-height: 1;
     white-space: nowrap;
     width: max-content;
