@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "abmac-site",
   "type": "module",
   "scripts": {
     "dev": "vite",
