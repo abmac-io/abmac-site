@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-
 import index from "/public/index.html?raw";
+import cacheRouter from "./cache";
 
 const app = new Hono();
 
@@ -11,5 +11,7 @@ app.get("/", (c) => {
 app.get("/qrcode", (c) => {
   return c.redirect("/");
 });
+
+app.route("/cache", cacheRouter);
 
 export default app;

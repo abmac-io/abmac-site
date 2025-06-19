@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "abmac-site",
   "compatibility_date": "2024-04-01",
-  "main": "./src/index.tsx",
+  "main": "./src/index.ts",
   "upload_source_maps": true,
   "preview_urls": true,
   "logpush": true,
@@ -15,6 +15,12 @@
     "enabled": true,
     "head_sampling_rate": 0.1
   },
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "db3d8f29c11f4dfe9d30b0d40d4a0d93"
+    }
+  ],
   "routes": [
     {
       "pattern": "abmac.io",

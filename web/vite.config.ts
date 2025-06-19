@@ -7,7 +7,7 @@ export default defineConfig({
     manifest: true,
     minify: true,
     rollupOptions: {
-      input: './src/index.tsx'
+      input: './src/index.ts'
     }
   },
   plugins: [cloudflare(), ssrPlugin()],
