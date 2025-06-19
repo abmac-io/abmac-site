@@ -21,6 +21,10 @@
   <body>
     <main class="layout-primary">
       <header>
+        <div aria-hidden id="session-id" data-on-load="@put('/cache/session/')">
+          No session data
+        </div>
+
           <div class="center-screen" style="align-items: start; overflow: hidden;">
             <div class="flex-stack" style="margin: 0;">
               <object class="header-logo" data="/rsc/img/stack_blue.svg" type="image/svg+xml" aria-label="Abstract Machines Logo">
