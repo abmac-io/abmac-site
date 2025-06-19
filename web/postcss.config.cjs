@@ -2,7 +2,6 @@ const postcssJitProps = require('postcss-jit-props');
 const autoprefixer = require('autoprefixer');
 const postcssuse = require('postcss-use');
 const presetenv = require('postcss-preset-env');
-const mediaquery = require('postcss-')
 const path = require('path');
 
 module.exports = {
