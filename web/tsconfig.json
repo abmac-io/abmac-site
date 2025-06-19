@@ -15,16 +15,5 @@
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@scripts/*": [
-        "public/scripts/*"
-      ],
-      "@templates/*": [
-        "public/templates/*"
-      ]
-    }
   },
 }

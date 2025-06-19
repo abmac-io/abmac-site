@@ -8,6 +8,10 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "single-page-application",
   },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  },
   "routes": [
     {
       "pattern": "abmac.io",

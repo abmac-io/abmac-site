@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 
+import index from "/public/index.html?raw";
+
 const app = new Hono();
-import index from "../public/templates/index.html?raw";
 
 app.get("/", (c) => {
   return c.html(index as string);
