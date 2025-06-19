@@ -5,6 +5,7 @@
   "main": "./src/index.tsx",
   "upload_source_maps": true,
   "preview_urls": true,
+  "logpush": true,
   "assets": {
     "run_worker_first": false,
     "html_handling": "auto-trailing-slash",

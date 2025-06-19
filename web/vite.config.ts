@@ -5,6 +5,7 @@ import { cloudflare } from '@cloudflare/vite-plugin'
 export default defineConfig({
   build: {
     manifest: true,
+    minify: true,
     rollupOptions: {
       input: './src/index.tsx'
     }
