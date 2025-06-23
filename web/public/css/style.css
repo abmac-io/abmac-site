@@ -320,7 +320,7 @@
   .hero-email {
     font-family: "Jost", sans-serif;
     font-weight: 200;
-    font-size: clamp(1.5rem, -0.653rem + 6.13vw, 7.25rem);
+    font-size: clamp(1.5rem, -0.653rem + 4.13vw, 5.25rem);
     line-height: 1;
     white-space: nowrap;
     width: max-content;
