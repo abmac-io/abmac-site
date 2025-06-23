@@ -317,6 +317,20 @@
     color: var(--brand-blue-light);
   }
 
+  .hero-email {
+    font-family: "Jost", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, -0.653rem + 6.13vw, 7.25rem);
+    line-height: 1;
+    white-space: nowrap;
+    width: max-content;
+    margin-inline: auto;
+    padding-inline: 0 !important;
+    text-align: center;
+    color: var(--brand-blue-light);
+  }
+
+
   .subhero-text {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 200;
